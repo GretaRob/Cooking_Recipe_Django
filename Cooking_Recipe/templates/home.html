@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recipe Book</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'search/album.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <section class="jumbotron text-center" style="background-color: #C9C18E;">
+        <div class="container">
+            <h1 class="jumbotron-heading" style="color: #334429;">Recipe Book</h1>
+            <form method="POST">
+            <div class="input-group mb-3">
+                {% csrf_token %}
+                <input type="text" name="search" class="form-control" aria-label="Username">
+            </div>
+            <p>
+                <button type="submit" name="submit" value="search" class="btn btn-sm btn-outline-secondary" style="background-color: #3c4736; color: #ffffff;">Search</button>
+            </p>
+            </form>
+        </div>
+    </section>
+    <div class="album py-5 bg-light">
+        <div class="container" style="color: #C99C3A;">
+            <div class="row">
+                {% for recipe_info in recipe_data %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ recipe_info.image }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+                        <div class="card-body">
+                            <p class="card-text">{{ recipe_info.recipename }}</p>
+                            <div class="align-self-baseline">
+                                <small class="text-muted">{{ recipe_info.ingredients }}</small>
+                            </div>   
+                            <div class="btn-group">
+                                <a type="button" href="{{ recipe_info.full_recipe }}" class="btn btn-sm btn-outline-secondary" style="background-color: #C9C18E; margin: 4px;">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
