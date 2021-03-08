@@ -37,6 +37,11 @@ A recipe search website built using Edamam API. A user can look for a recipe by 
 
 *****
 
+## Live Link
+Or you can access the web application directly via this [LIVE LINK](https://cookingrecipeproject.herokuapp.com/).
+
+*****
+
 ## Technologies Used
 
 Python 3
